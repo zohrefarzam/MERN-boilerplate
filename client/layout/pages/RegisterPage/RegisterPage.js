@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { push } from 'connected-react-router';
 import R from 'ramda';
 
-import Register from '_views/RegisterSection';
+import RegisterView from '_views/RegisterView';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -16,8 +16,6 @@ export default function RegisterPage() {
   }, []);
 
   return (
-    <div className="register-page page">
-      <Register />
-    </div>
+   <RegisterView/>
   );
 }

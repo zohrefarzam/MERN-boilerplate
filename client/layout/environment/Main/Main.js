@@ -14,10 +14,7 @@ import HomePage from '_pages/HomePage';
 import TodoPage from '_pages/TodoPage';
 import SettingsPage from '_pages/SettingsPage';
 import LostPage from '_pages/LostPage';
-
-import Navigation from '_organisms/Navigation';
-import Footer from '_organisms/Footer';
-import Navbar from '../../components/NavBar';
+import Navbar from '_components/NavBar';
 
 export default function Main({ location }) {
   const dispatch = useDispatch();
@@ -41,8 +38,6 @@ export default function Main({ location }) {
     <div>
       <ReactNotification />
       <Navbar pathname={location.pathname}/>
-      {/* <Navigation pathname={location.pathname} /> */}
-      <div className="main">
         <Switch>
           <Route exact path="/" component={WelcomePage} />
           <Route path="/login" component={LoginPage} />
@@ -52,8 +47,7 @@ export default function Main({ location }) {
           <Route path="/settings" component={SettingsPage} />
           <Route path="*" component={LostPage} />
         </Switch>
-      </div>
-      <Footer />
+    
     </div>
   );
 }

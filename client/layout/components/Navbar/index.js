@@ -14,13 +14,13 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-
+import CButton from "../../../ui-component/CButton";
+import { purple } from '@mui/material/colors';
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -87,15 +87,10 @@ export default function Navbar({ pathname }) {
   const { user } = useSelector(R.pick(["user"]));
 
   const [auth, setAuth] = useState(!R.isEmpty(user));
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setAuth(!R.isEmpty(user));
   }, [user.username]);
-
-  const toggleDropdown = () => setOpen(!open);
-
-  const closeDropdown = () => setOpen(false);
 
   const isHome =
     pathname.length === 5
@@ -123,8 +118,8 @@ export default function Navbar({ pathname }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>logout</MenuItem>
     </Menu>
   );
 
@@ -145,26 +140,6 @@ export default function Navbar({ pathname }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -185,12 +160,13 @@ export default function Navbar({ pathname }) {
       <AppBar position="static">
         <Toolbar>
           <Typography
-            variant="h6"
+            variant="h2"
             noWrap
+            color={"white"}
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            {/* FL Office */}
+            FL Office
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -206,10 +182,10 @@ export default function Navbar({ pathname }) {
             {!auth && (
               <>
                 <Link to="/login">
-                  <Button variant="contained">login</Button>
+                  <CButton title='login' variant="contained" />
                 </Link>
                 <Link to="/register">
-                  <Button variant="contained">sign In</Button>
+                  <Button style={{color:'white'}}>sign Up</Button>
                 </Link>
               </>
             )}

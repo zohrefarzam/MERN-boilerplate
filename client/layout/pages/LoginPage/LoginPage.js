@@ -1,23 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { push } from 'connected-react-router';
-import R from 'ramda';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { push } from "connected-react-router";
+import R from "ramda";
 
-import LoginSection from '_views/LoginSection';
+import LoginView from "_views/LoginView";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const { user } = useSelector(R.pick(['user']));
+  const { user } = useSelector(R.pick(["user"]));
 
   useEffect(() => {
     if (!R.isEmpty(user)) {
-      dispatch(push('/home'));
+      dispatch(push("/home"));
     }
   }, []);
 
-  return (
-    <div className="login-page page">
-      <LoginSection />
-    </div>
-  );
+  return <LoginView />;
 }

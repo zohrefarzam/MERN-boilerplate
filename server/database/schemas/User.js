@@ -16,12 +16,13 @@ const userSchema = new Schema(
     },
     username_case: { type: String, required: true },
     password: { type: String, required: true },
+    email: { type: String, unique: true },
     first_name: { type: String, maxlength: 20 },
     last_name: { type: String, maxlength: 20 },
     bio: { type: String, maxlength: 240 },
   },
   {
-    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
 );
 
