@@ -24,7 +24,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   devtool: 'source-map',
   entry: [
-    resolve('client/styles/index.scss'),
+    resolve('client/assets/scss/style.scss'),
     resolve('client/assets/index.js'),
     resolve('client/index.js'),
   ],
@@ -38,7 +38,7 @@ module.exports = {
     alias: {
       _client: resolve('client'),
       _assets: resolve('client/assets/'),
-      _uicomponent: resolve('client/ui-component/'),
+      _uicomponent: resolve('client/layout/ui-component/'),
       _styles: resolve('client/styles/'),
       _utils: resolve('client/utils/'),
       _api: resolve('client/api/'),

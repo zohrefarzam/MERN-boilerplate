@@ -12,7 +12,7 @@ const AuthFooter = () => (
       target="_blank"
       underline="hover"
     >
-      &copy; fl office
+      &copy; Boilerplate
     </Typography>
   </Stack>
 );

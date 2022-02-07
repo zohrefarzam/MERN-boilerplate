@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import R from "ramda";
+
+//material
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -10,17 +11,15 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import CButton from "../../../ui-component/CButton";
-import { purple } from '@mui/material/colors';
+// import components
+import CButton from "_uicomponent/CButton";
+import { attemptLogout } from "_thunks/auth";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -68,6 +67,15 @@ export default function Navbar({ pathname }) {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const dispatch = useDispatch();
+  const { user } = useSelector(R.pick(["user"]));
+
+  const [auth, setAuth] = useState(!R.isEmpty(user));
+
+  useEffect(() => {
+    setAuth(!R.isEmpty(user));
+  }, [user.username]);
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -81,26 +89,10 @@ export default function Navbar({ pathname }) {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+  const logout = () => {
+    handleMenuClose();
+    dispatch(attemptLogout()).catch(R.identity);
   };
-  const { user } = useSelector(R.pick(["user"]));
-
-  const [auth, setAuth] = useState(!R.isEmpty(user));
-
-  useEffect(() => {
-    setAuth(!R.isEmpty(user));
-  }, [user.username]);
-
-  const isHome =
-    pathname.length === 5
-      ? pathname === "/home"
-      : R.slice(0, 6, pathname) === "/home/";
-
-  const isSettings =
-    pathname.length === 9
-      ? pathname === "/settings"
-      : R.slice(0, 10, pathname) === "/settings/";
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -119,7 +111,7 @@ export default function Navbar({ pathname }) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>logout</MenuItem>
+      <MenuItem onClick={logout}>logout</MenuItem>
     </Menu>
   );
 
@@ -166,7 +158,7 @@ export default function Navbar({ pathname }) {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            FL Office
+            Boilerplate
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -182,37 +174,41 @@ export default function Navbar({ pathname }) {
             {!auth && (
               <>
                 <Link to="/login">
-                  <CButton title='login' variant="contained" />
+                  <CButton title="login" variant="contained" />
                 </Link>
                 <Link to="/register">
-                  <Button style={{color:'white'}}>sign Up</Button>
+                  <Button style={{ color: "white" }}>sign Up</Button>
                 </Link>
               </>
             )}
             {auth && (
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+              <>
+                <p>{user.username}</p>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </>
             )}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <p>{user.username}</p>
             <IconButton
               size="large"
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <MoreIcon />
+              <AccountCircle />
             </IconButton>
           </Box>
         </Toolbar>

@@ -5,14 +5,14 @@ import ReactNotification from 'react-notifications-component';
 import { useDispatch } from 'react-redux';
 import R from 'ramda';
 
+import {  Grid } from "@mui/material";
+
 import { attemptGetUser } from '_thunks/user';
 
 import WelcomePage from '_pages/WelcomePage';
 import LoginPage from '_pages/LoginPage';
 import RegisterPage from '_pages/RegisterPage';
 import HomePage from '_pages/HomePage';
-import TodoPage from '_pages/TodoPage';
-import SettingsPage from '_pages/SettingsPage';
 import LostPage from '_pages/LostPage';
 import Navbar from '_components/NavBar';
 
@@ -35,7 +35,7 @@ export default function Main({ location }) {
   }, [location.pathname]);
 
   return !loading && (
-    <div>
+    <div className='main'>
       <ReactNotification />
       <Navbar pathname={location.pathname}/>
         <Switch>
@@ -43,11 +43,8 @@ export default function Main({ location }) {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/home" component={HomePage} />
-          <Route path="/todo" component={TodoPage} />
-          <Route path="/settings" component={SettingsPage} />
           <Route path="*" component={LostPage} />
         </Switch>
-    
     </div>
   );
 }

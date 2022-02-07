@@ -16,7 +16,14 @@
 }
 
 // ==============================|| PERFECT SCROLLBAR ||============================== //
-
+body {
+    display: block;
+    margin: 0px;
+}
+.main{
+    height: 100vh;
+ 
+}
 .scrollbar-container {
     .ps__rail-y {
         &:hover > .ps__thumb-y,

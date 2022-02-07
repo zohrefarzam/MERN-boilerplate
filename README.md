@@ -1,9 +1,7 @@
 # MERN Boilerplate
 MongoDB Express.js React.js Node.js
 
-A Full MERN Stack Boilerplate for Web Apps. Includes a local authentication system using passport. User is given a simple profile with Full Name and Profile Picture. User is also able to reset password and username case.
-
-NEW: For those of you who wish to separate the client and server into separate projects, I have created two repos that do just that! Check out [MERN Client](https://github.com/djizco/mern-client) and [MERN Server](https://github.com/djizco/mern-server).
+A Full MERN Stack Boilerplate for Web Apps. Includes a local authentication system using passport.
 
 ## Requirements
 
@@ -57,31 +55,11 @@ npm run test:verbose
 npm run test:watch-client
 npm run test:watch-server
 ```
-
-## Setup Instructions
-
-Note: This is now a github template project. This makes copying the contents of the project
-into a new repo very simple.
-
-To setup your own project, you will need to copy the contents of this project into a new repo.
-You will need to update the content in these files to names of your project and yourself:
-
-* package.json: name, version, description, repository, author, bugs, homepage
-* LICENSE: (update to your preferred license)
-* client/index.html: description and title
-* this README.md
-
-This is also a good time to go through the included libraries to add or remove features that you want.
-
-After this you can commit the files into a new repository and push up to your github.
-You can now start updating files in your client to begin working on your own project!
-
 ## Features
 
 * Webpack conveniently bundles your code for you.
 * Babel lets you use ES6/7 features.
 * CSS pre-processor setup for LESS and SASS lets you keep your styles clean and organized.
-* ESLint helps you maintain a high level of code quality.
 * Jest gives you a robust testing framework to make sure your code works.
 
 ## Code Structure
@@ -92,33 +70,31 @@ You can now start updating files in your client to begin working on your own pro
   - assets
     - images
     - icons
+    - scss
   - layout
     - components
-    - molecules
-    - organisms
-    - views
-    - pages
     - environment
+    - pages
+    - views
+    - ui-component
   - hooks
   - store
     - actions
     - reducers
     - thunks
     - tests
-  - styles
+  - themes
   - utils
 - server
   - config
+  - controllers
   - database
+  - middlewares
+  -passport
   - routes
+  -test
 - scripts
 ```
-
-Component Heirarchy:
-
-Environment > Pages > views > Organisms > Molecules > components
-
-This is based on atomic design. Learn more about [atomic design](http://bradfrost.com/blog/post/atomic-web-design/).
 
 ## Technologies
 
@@ -138,9 +114,7 @@ This is based on atomic design. Learn more about [atomic design](http://bradfros
 
 [React Notifications Component](https://teodosii.github.io/react-notifications-component/) - Notification System
 
-[Bulma](http://bulma.io/) - CSS Framework
-
-[React Bulma Companion](https://github.com/djizco/react-bulma-companion) - Bulma Component Library
+[Material Ui v5](https://mui.com/) - React UI library
 
 [FontAwesome](http://fontawesome.io/) - Icons
 

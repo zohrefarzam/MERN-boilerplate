@@ -6,7 +6,8 @@ import { styled } from '@mui/material/styles';
 
 const AuthWrapper1 = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.primary.light,
-    minHeight: '100vh'
+    minHeight: '100vh',
+    display:'flex'
 }));
 
 export default AuthWrapper1;

@@ -6,10 +6,9 @@ import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 
 // project imports
-import AuthWrapper1 from "./AuthWrapper1";
-import AuthCardWrapper from "./AuthCardWrapper";
+import AuthWrapper1 from "_uicomponent/AuthWrapper1";
+import AuthCardWrapper from "_uicomponent/AuthCardWrapper";
 import AuthLogin from "_components/auth-forms/AuthLogin";
-import AuthFooter from "_uicomponent/cards/AuthFooter";
 
 // assets
 
@@ -49,7 +48,7 @@ const LoginView = () => {
                         gutterBottom
                         variant={"h1"}
                       >
-                        FL Office
+                        Boilerplate
                       </Typography>
                     </Link>
                   </Grid>
@@ -112,9 +111,6 @@ const LoginView = () => {
               </AuthCardWrapper>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
         </Grid>
       </Grid>
     </AuthWrapper1>
