@@ -38,6 +38,10 @@ Start the server
 npm start
 ```
 
+Start database
+```bash
+mongod
+```
 #### for Production
 
 ```bash
